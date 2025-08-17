@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Merriweather";
+    src: url("/Merriweather.ttf");
+}
+
+@theme {
+  --color-espresso: #2a1f16;
+  --color-hazel: #4d3b2c;
+  --color-cream: #f5e6d3;
+  --color-terracotta: #c56b44;
+  --color-olive: #7a8450;
+  --color-soft-gold: #d9b382;
+  --color-ivory: #faf0e6;
+}
+
+@theme {
+  --font-medium: "Merriweather"
+}
+
+@keyframes shakeAnim {
+0% {
+    transform: translateX(-5px);
+}
+
+20% {
+    transform: translateX(5px);
+}
+
+40% {
+    transform: translateX(-5px);
+}
+
+60% {
+    transform: translateX(5px);
+}
+
+80% {
+    transform: translateX(-5px);
+}
+
+100% {
+    transform: translateX(0);
+}
+}
+
+@keyframes smoothAppear {
+0% {
+    opacity: 0;
+}
+}
+
+.shakeAnim {
+animation: shakeAnim 0.3s ease-in-out;
+}
+
+.smoothAppear {
+animation: smoothAppear 1.4s ease-in-out;
+}
