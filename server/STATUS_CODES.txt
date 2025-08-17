@@ -1,0 +1,22 @@
+ERROR codes
+E001 - invalid username (regex)
+E002 - invalid username (conflict)
+E003 - invalid username (non exist)
+E004 - invalid username (length)
+E005 - invalid password (regex)
+E006 - invalid email (regex)
+E007 - invalid email (conflict)
+
+E008 - invalid or expired JWT token
+E009 - internal server error
+
+E010 - invalid password (length)
+E011 - malformed request
+
+SUCCESS codes
+S001 - successfull request
+S002 - new user registered
+S003 - successfull login
+S004 - JWT token validated
+S005 - username validated
+S006 - password validated
