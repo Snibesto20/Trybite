@@ -86,3 +86,31 @@ router.post("/registerUser", async (req, res) => {
     return res.status(400).json({ statusCodes: ["E011"] });
   }
 });
+
+router.get("/fetchAccount", async (req, res) => {
+  console.log(`\n📁 Received information from client.`);
+  const authHeader = req.headers["authorization"];
+  const clientJwt = authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : null
+
+  if(!clientJwt) {
+    console.log(`📦 JWT token doesn't exist. E008`);
+    console.log(`📂 Sent response to client.`);
+    return res.status(401).json({ statusCodes: ["E009"] });
+  }
+
+  try {
+    const decodedJWT = jwt.verify(clientJwt, process.env.JWT_SECRET as string) as JwtPayload;
+    const fetchedAccount = await db_userModel.findOne({ _id: decodedJWT._id }).select("-password -__v").lean()
+    console.log(`📦 Valid JWT token.`);
+    console.log(`📂 Sent response to client.`);
+    return res.status(200).json({ fetchedAccount, statusCodes: ["S001"] })
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.log(`📦 JWT verification failed: ${err.message}`);
+    } else {
+      console.log(`📦 JWT verification failed:`, err);
+    }
+    console.log(`📂 Sent response to client.`);
+    return res.status(401).json({ statusCodes: ["E008"] });
+  }
+})
