@@ -14,10 +14,8 @@ import { validUsernameRegister, validPasswordRegister } from "../modules/inputVa
 // Initialize dotenv
 dotenv.config();
 
-// Interfaces
-interface JwtPayload {
-  _id: string;
-}
+// Interface/type imports
+import { JwtPayload } from "../types";
 
 // Router
 export const router = express.Router();
