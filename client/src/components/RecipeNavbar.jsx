@@ -11,8 +11,6 @@ import { logout } from "../modules/logout"
 // Assets import
 import { FaBars, FaCog, FaSearch, FaSignOutAlt } from "react-icons/fa";
 
-// Global state import
-import {useAccountStore} from "../store"
 export default function RecipeNavbar() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [searchDFocused, setSearchDFocused] = useState(false)
@@ -21,9 +19,7 @@ export default function RecipeNavbar() {
     const [btn2Hover, setBtn2Hover] = useState(false)
     const searchRef = useRef(null)
     const navigate = useNavigate()
-    const { account, fetchAccount } = useAccountStore()
-
-    useEffect(() => { fetchAccount() }, [])
+    const { account } = useAccountStore()
     useEffect(() => { if (searchMFocused) searchRef.current?.focus() }, [searchMFocused])
 
     return (

@@ -13,10 +13,12 @@ E009 - internal server error
 E010 - invalid password (length)
 E011 - malformed request
 
+E012 - login unsuccessful
+
 SUCCESS codes
-S001 - successfull request
+S001 - successful request
 S002 - new user registered
-S003 - successfull login
+S003 - successful login
 S004 - JWT token validated
 S005 - username validated
 S006 - password validated

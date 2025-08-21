@@ -12,7 +12,7 @@ export default function FormInput(p) {
                 </h3>
             </span>
             <input className={`outline-0 border px-5 py-3 max-h-40 min-h-12 ${p.inputState === 'neutral' ? 'text-espresso' : 'text-terracotta border-terracotta'}`} type={p.type}
-                maxLength={p.maxLength} onChange={e => p.onChange(e.target.value)} value={p.value} />
+                maxLength={p.maxLength} onChange={e => p.onChange(e.target.value)} onFocus={p.onFocus} value={p.value} />
                 <p className={`absolute -bottom-1 text-xs text-terracotta mt-1 h-1 ${p.inputState === 'neutral' ? 'visible' : 'visible'}`}>{p.errorMsg}</p>
             </div>
         )

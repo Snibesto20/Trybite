@@ -49,7 +49,7 @@ router.get("/usernameAvailable", async (req: Request, res: Response) => {
   }
 })
 
-router.post("/registerUser", async (req, res) => {
+router.post("/registerUser", async (req: Request, res: Response) => {
   console.log(`\n📁 /registerUser was triggered by client.`);
   const { username, password } = req.body;
 
@@ -63,14 +63,13 @@ router.post("/registerUser", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT_ROUNDS))
     const newUser =  new db_userModel({username, password: hashedPassword})
     
-    const jwtToken = jwt.sign({_id: newUser._id} as JwtPayload, process.env.JWT_SECRET as string)
     try {
       await newUser.save()
       console.log(`📦 New user @${username} created!`);
       console.log(`📂 Sent response to client.`);
-      return res.status(201).json({ 
+      return res.status(200).json({ 
         statusCodes: ["S002"], 
-        jwtToken 
+        jwtToken: jwt.sign({_id: newUser._id} as JwtPayload, process.env.JWT_SECRET as string) 
       });
     } catch (err: unknown) {
       console.log(`❌ Error occurred when trying to create new user:`, err);
@@ -87,8 +86,38 @@ router.post("/registerUser", async (req, res) => {
   }
 });
 
+router.post("/loginUser", async (req: Request, res: Response) => {
+  console.log(`\n📁 /loginUser was triggered by client.`);
+  const { username, password } = req.body;
+  
+  try {
+    const foundUser = await db_userModel.findOne({username}).lean()
+    
+    // If user by the passed in credentials is not found
+    if(!foundUser || !(await bcrypt.compare(password, foundUser.password))) {
+      console.log(`📦 Invalid client data!`);
+      console.log(`📂 Sent response to client.`);
+      return res.status(400).json({ statusCodes: ["E012"] });
+    }
+
+    // If user by the passed in credentials is found
+    console.log(`📦 User @${username} successfully logged in!`);
+    console.log(`📂 Sent response to client.`);
+    return res.status(201).json({ 
+      statusCodes: ["S003"], 
+      jwtToken: jwt.sign({_id: foundUser._id} as JwtPayload, process.env.JWT_SECRET as string)
+    });
+  }
+
+  // On unexpected client/server errors errors.
+  catch (err: unknown) {
+    console.log(`❌ Error occurred when trying to login:`, err);
+    return res.status(500).json({statusCodes: ["E009"]})
+  }
+});
+
 router.get("/fetchAccount", async (req, res) => {
-  console.log(`\n📁 Received information from client.`);
+  console.log(`\n📁 /registerUser was triggered by client.`);
   const authHeader = req.headers["authorization"];
   const clientJwt = authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : null
 
