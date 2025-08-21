@@ -36,7 +36,7 @@ export async function validUsernameRegister(username: string) {
   }
 }
 
-export async function validPasswordRegister(password: string) {
+export function validPasswordRegister(password: string) {
   // Check for password length
   if (!password || password.length < 8 || password.length > 64) {
     console.log("❌ Invalid client data! E010");

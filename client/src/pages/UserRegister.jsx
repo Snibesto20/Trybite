@@ -31,7 +31,7 @@ export default function Form() {
     const passwordDebounce = useRef(null)
     
     // Function Initialization
-    async function submitForm(event) {
+    async function registerUser(event) {
         // Preventing default behaviour
         event.preventDefault()
 
@@ -115,7 +115,7 @@ export default function Form() {
     return (
         <motion.div className="flex flex-col items-center relative font-medium bg-ivory" initial={{opacity: 0.6}} animate={{opacity: 1}} transition={{duration: 2}}>
             <div className="flex flex-col h-screen w-full px-[10%] sm:px-0 sm:w-96 text-center justify-center -translate-y-10">
-                <form onSubmit={submitForm}>
+                <form onSubmit={registerUser}>
                     <h1 className="text-3xl font-semibold mb-2">
                         REGISTER FOR FREE
                     </h1>
@@ -144,8 +144,7 @@ export default function Form() {
                     <img src="/icons/google-logo.svg" alt="" className="w-8" />
                 </button>
 
-                <a href="#" className="inline-block w-fit mx-auto text-terracotta underline font-semibold text-md">Already have
-                    an account? Log in</a>
+                <a href="#" className="inline-block w-fit mx-auto text-terracotta underline font-semibold text-md" onClick={() => navigate("/login")}>Already have an account? Log in</a>
             </div>
         </motion.div>
     )
