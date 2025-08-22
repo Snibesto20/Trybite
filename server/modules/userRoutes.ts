@@ -65,7 +65,7 @@ router.post("/registerUser", async (req: Request, res: Response) => {
       await newUser.save()
       console.log(`📦 New user @${username} created!`);
       console.log(`📂 Sent response to client.`);
-      return res.status(200).json({ 
+      return res.status(201).json({ 
         statusCodes: ["S002"], 
         jwtToken: jwt.sign({_id: newUser._id} as JwtPayload, process.env.JWT_SECRET as string) 
       });
