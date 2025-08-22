@@ -27,7 +27,7 @@ export default function RecipeNavbar() {
     return (
         <div>
             {/* Desktop */}
-            <div className="sm:flex hidden gap-2 justify-between items-center fixed top-0 left-0 right-0 mx-12 lg:mx-14 xl:mx-24 border-b z-50 py-4 select-none bg-ivory">
+            <div className="md:flex hidden gap-2 justify-between items-center fixed top-0 left-0 right-0 mx-12 lg:mx-14 xl:mx-24 border-b z-50 py-4 select-none bg-ivory">
                 <h2 className="font-bold text-2xl static">Trybite.</h2>
                 <motion.div className={`relative w-2/5 lg:w-100 hidden sm:flex`} onFocus={() => setSearchDFocused(true)} onBlur={() => setSearchDFocused(false)} initial={{scale: 1}} animate={{ scale: searchDFocused ? 1.05 : 1 }}>
                     <FaSearch className={`absolute bottom-1.5 left-2 h-5 w-5 ${searchDFocused && "hidden"}`} />
@@ -51,10 +51,10 @@ export default function RecipeNavbar() {
             </div>
 
             {/* Mobile */}
-            <div className="flex gap-2 justify-between items-start fixed top-0 left-0 right-0 px-5 sm:hidden border-b z-50 py-4 select-none bg-ivory">
+            <div className="flex gap-2 justify-between items-start fixed top-0 left-0 right-0 px-5 md:hidden border-b z-50 py-4 select-none bg-ivory">
                 <h2 className={`font-bold text-2xl ${searchMFocused && "hidden"}`}>Trybite.</h2>
                 <div className={`flex gap-5 ${searchMFocused && "hidden"}`}>
-                    <motion.button className="flex sm:hidden rounded-4xl border p-2" onClick={() => setSearchMFocused(true)}><FaSearch className="h-5 w-5" /></motion.button>
+                    <motion.button className="flex rounded-4xl border p-2" onClick={() => setSearchMFocused(true)}><FaSearch className="h-5 w-5" /></motion.button>
                     <div className="flex items-center">
                         <button className={`cursor-pointer h-6 ${account ? "block" : "hidden"}`} onClick={() => setMenuOpen(prev => !prev)}><FaBars className="h-full w-full" /></button>
                         <div className={`absolute left-0 w-full px-5 -bottom-32 bg-ivory ${menuOpen ? "block" : "hidden"}`}>
