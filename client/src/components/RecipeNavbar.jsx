@@ -10,6 +10,7 @@ import { logout } from "../modules/logout"
 
 // Assets import
 import { FaBars, FaCog, FaSearch, FaSignOutAlt } from "react-icons/fa";
+import {useAccountStore} from "../store"
 
 export default function RecipeNavbar() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -20,6 +21,7 @@ export default function RecipeNavbar() {
     const searchRef = useRef(null)
     const navigate = useNavigate()
     const { account } = useAccountStore()
+    
     useEffect(() => { if (searchMFocused) searchRef.current?.focus() }, [searchMFocused])
 
     return (
