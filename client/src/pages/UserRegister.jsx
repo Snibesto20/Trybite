@@ -57,6 +57,7 @@ export default function Form() {
         if(!clientError) {
             // If the account creation is successful
             const submitRes = await axios.post("http://localhost:5000/registerUser", {username: usernameValue, password: passwordValue})
+
             if(submitRes.data.statusCodes.includes("S002") && submitRes.status === 201) {
                 navigate("/")
                 localStorage.setItem("jwt", submitRes.data.jwtToken)
@@ -85,7 +86,7 @@ export default function Form() {
         if(username.length == 0) return
 
         usernameDebounce.current = setTimeout(async () => {
-            const response = await validUsernameRegister(username)
+            const response = await validUsernameRegister(username.toLowerCase())
             if(response.state == "error") {
                 setUsernameState(response.state)
                 setUsernameErrorMsg(response.message)

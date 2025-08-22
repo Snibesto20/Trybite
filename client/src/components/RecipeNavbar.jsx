@@ -34,7 +34,7 @@ export default function RecipeNavbar() {
                     <input type="text" className={`border rounded-sm px-2 py-1 outline-0 w-full text-terracotta ${searchDFocused ? "border-terracotta" : "border-espresso"}`} />
                 </motion.div>
                 <div className="relative flex items-center gap-5">
-                    <h4 className={`font-semibold hidden lg:flex`}>{account ? account.username : null}</h4>
+                    <h4 className={`font-semibold hidden lg:flex`}>{account ? account.displayName : null}</h4>
                     <button className={`cursor-pointer h-6 ${account ? "block" : "hidden"}`} onClick={() => setMenuOpen(prev => !prev)}><FaBars className="h-full w-full" /></button>
                     <div className={`absolute w-43 right-0 -bottom-23 bg-ivory ${menuOpen ? "block" : "hidden"}`}>
                         <button className="flex w-full cursor-pointer items-center justify-between border-b p-1 py-1.5 pr-0" onClick={() => navigate("account/settings")} onMouseOver={() => setBtn2Hover(true)} onMouseOut={() => setBtn2Hover(false)}>

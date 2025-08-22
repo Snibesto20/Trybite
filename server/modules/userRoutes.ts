@@ -52,14 +52,14 @@ router.post("/registerUser", async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   // Validating username
-  const usernameRes = await validUsernameRegister(username)
+  const usernameRes = await validUsernameRegister(username.toLowerCase())
   // Validating password
   const passwordRes = await validPasswordRegister(password)
 
   // If the submit is correct create the account
   if(usernameRes.statusCodes.includes("S005") && passwordRes.statusCodes.includes("S006")) { 
     const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT_ROUNDS))
-    const newUser =  new db_userModel({username, password: hashedPassword})
+    const newUser =  new db_userModel({username: username.toLowerCase(), displayName: username, password: hashedPassword})
     
     try {
       await newUser.save()
@@ -89,7 +89,7 @@ router.post("/loginUser", async (req: Request, res: Response) => {
   const { username, password } = req.body;
   
   try {
-    const foundUser = await db_userModel.findOne({username}).lean()
+    const foundUser = await db_userModel.findOne({username: username.toLowerCase()}).lean()
     
     // If user by the passed in credentials is not found
     if(!foundUser || !(await bcrypt.compare(password, foundUser.password))) {
