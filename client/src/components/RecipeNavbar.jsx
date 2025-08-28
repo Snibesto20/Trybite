@@ -37,11 +37,11 @@ export default function RecipeNavbar() {
                     <h4 className={`font-semibold hidden lg:flex`}>{account ? account.displayName : null}</h4>
                     <button className={`cursor-pointer h-6 ${account ? "block" : "hidden"}`} onClick={() => setMenuOpen(prev => !prev)}><FaBars className="h-full w-full" /></button>
                     <div className={`absolute w-43 right-0 -bottom-23 bg-ivory ${menuOpen ? "block" : "hidden"}`}>
-                        <button className="flex w-full cursor-pointer items-center justify-between border-b p-1 py-1.5 pr-0" onClick={() => navigate("account/settings")} onMouseOver={() => setBtn2Hover(true)} onMouseOut={() => setBtn2Hover(false)}>
+                        <button className="flex w-full cursor-pointer items-center justify-between border-b px-3 py-2 pr-0" onClick={() => navigate("account/settings")} onMouseOver={() => setBtn2Hover(true)} onMouseOut={() => setBtn2Hover(false)}>
                             <span className={`${btn2Hover ? "text-terracotta underline" : null}`}>Settings</span>
                             <FaCog className={`${btn2Hover ? "text-terracotta terracotta" : null}`} />
                         </button>
-                        <button className="flex w-full cursor-pointer items-center justify-between border-b p-1 py-1.5 pr-0" onClick={() => logout(navigate)} onMouseOver={() => setBtn1Hover(true)} onMouseOut={() => setBtn1Hover(false)}>
+                        <button className="flex w-full cursor-pointer items-center justify-between border-b px-3 py-2 pr-0" onClick={() => logout(navigate)} onMouseOver={() => setBtn1Hover(true)} onMouseOut={() => setBtn1Hover(false)}>
                             <span className={`${btn1Hover ? "text-terracotta underline" : null}`}>Logout</span>
                             <FaSignOutAlt className={`${btn1Hover ? "text-terracotta underline" : null}`} />
                         </button>
