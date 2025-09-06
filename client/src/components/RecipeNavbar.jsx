@@ -23,7 +23,7 @@ export default function RecipeNavbar() {
     const { account } = useAccountStore()
     
     useEffect(() => { if (searchMFocused) searchRef.current?.focus() }, [searchMFocused])
-
+        
     return (
         <div>
             {/* Desktop */}

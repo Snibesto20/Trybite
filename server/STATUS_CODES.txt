@@ -22,3 +22,4 @@ S003 - successful login
 S004 - JWT token validated
 S005 - username validated
 S006 - password validated
+S007 - resource updated

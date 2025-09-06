@@ -5,11 +5,12 @@ import { useEffect } from "react";
 import RecipeCard from "../components/RecipeCard";
 import RecipeNavbar from "../components/RecipeNavbar"
 
-// Secondary package imports
+// External package imports
 import {motion} from "framer-motion"
 
 // RecipeBrowser component export
 export default function RecipeBrowser() {
+  
   return (
     <motion.div className="bg-ivory h-screen"
         initial={{opacity: 0.6}}

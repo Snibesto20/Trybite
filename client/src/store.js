@@ -12,7 +12,7 @@ export const useAccountStore = create((set) => ({
             const fetchedAccount = await axios.get('http://localhost:5000/fetchAccount', {headers: {Authorization: `Bearer ${jwt}`}})
             const responseStatusCodes = fetchedAccount.data.statusCodes
 
-            if(responseStatusCodes.includes("S001")) {set({account: fetchedAccount.data.fetchedAccount})}
+            if(responseStatusCodes.includes("S004")) {set({account: fetchedAccount.data.fetchedAccount})}
         } catch (err) {
             console.error(err);
         }

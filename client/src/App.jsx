@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import UserRegister from "./pages/UserRegister"
 import UserLogin from "./pages/UserLogin"
 import RecipeBrowser from "./pages/RecipeBrowser";
+import UserSettings from "./pages/UserSettings";
 
 // External package imports
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -23,6 +24,7 @@ export default function App() {
                 <Route path="/" element={<RecipeBrowser />} />
                 <Route path="/register" element={<UserRegister />} />
                 <Route path="/login" element={<UserLogin />} />
+                <Route path="/account/settings" element={<UserSettings />} />
             </Routes>
         </BrowserRouter>
     )

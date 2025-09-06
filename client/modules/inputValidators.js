@@ -25,7 +25,7 @@ export async function validUsernameRegister(username) {
   catch(err) {
       if (err.response.data?.statusCodes?.includes("E002")) {
         console.error(`❌ Invalid client data! E002`);
-        return {state: "error", message: "Usernames is already taken!"}
+        return {state: "error", message: "Username is already taken!"}
       }
   }
 
